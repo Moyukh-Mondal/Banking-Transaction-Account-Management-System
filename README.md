@@ -415,33 +415,6 @@ Before this repo is shared or deployed anywhere, please address:
 
 ---
 
-## Known issues
-
-Found while reading the code; none block the main flows.
-
-1. **Customer spending chart data is always empty.** `dashboard.py` computes inflow/outflow with `transaction_type = 'credit'/'debit'` and uses the same values to label recent transactions, but the schema's types are `Deposit`, `Withdrawal`, `Transfer_In`, `Transfer_Out`, `Loan_Payment`. Map `Deposit`/`Transfer_In` to inflow and the others to outflow.
-2. **`employee_login.py` needs `python-dotenv`**, which is missing from `requirements.txt`.
-3. **`admin_create.py` targets employee ids `EMP901–EMP903`**, which the seed script does not create (it creates `EMP0001–EMP0030`, with admins at 29 and 30). Either insert those employees first or use `employee_login.py`.
-4. **`scripts/set_demo_passwords.py` refers to usernames** (`customer1`, `employee1`, `admin1`, …) that the current seed does not contain.
-5. **Admin table editor vs. API.** The admin-records page includes generic create/edit/delete calls, but the backend exposes only `GET` for those tables; creating and deactivating employees is the only write path.
-6. **Route shadowing.** `GET /api/branches` is registered in both `dashboard.py` (any signed-in user) and `admin_records.py` (admin only); because the dashboard router is included first, the admin-only variant is never reached.
-7. **Loan decision roles.** The API lets any employee call the decision endpoint, but `sp_approve_loan` requires an active Manager or Admin, so a plain Employee gets the generic `409` message.
-8. **Unused file.** `frontend/js/mockData.js` is still loaded by some pages but nothing references `MOCK_DATABASE` any more (and its branch data differs from the real seed).
-9. **Duplicate audit function.** `fn_audit_row_change` is defined in both `triggers.sql` and the patch inside `stored_procedures.sql`; the later definition wins.
-10. **Swagger UI depends on a CDN** (unpkg), so `/docs` needs internet access.
-
----
-
-## Possible next steps
-
-- Add automated tests (`pytest` and `httpx` are already in `requirements.txt`) for the transfer, loan and access-control paths.
-- Add reporting views (monthly statements, branch performance, delinquent loans) and expose them through the API.
-- Compute interest accrual for savings and fixed deposits, and an EMI schedule for loans.
-- Add password change/reset, session refresh, and failed-login lockout.
-- Containerise with Docker Compose (PostgreSQL + API + static frontend) for one-command setup.
-- Add an ER diagram image and screenshots to this README.
-
----
 
 ## Disclaimer
 
