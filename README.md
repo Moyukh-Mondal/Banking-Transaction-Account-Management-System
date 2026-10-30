@@ -23,8 +23,6 @@ A DBMS course project that models core banking operations end to end: a **Postgr
 10. [Seed data and logins](#seed-data-and-logins)
 11. [Request lifecycle example](#request-lifecycle-example)
 12. [Security notes and hardening checklist](#security-notes-and-hardening-checklist)
-13. [Known issues](#known-issues)
-14. [Possible next steps](#possible-next-steps)
 
 ---
 
