@@ -5,7 +5,7 @@ A DBMS course project that models core banking operations end to end: a **Postgr
 > **Academic prototype.** All data is synthetic (fictional bank prefix `DUMY`, made-up PAN/Aadhaar-shaped numbers). Do not use it for real banking or with real personal data.
 
 **Team:** Moyukh Mondal (252123017) · Koushik Maity (252123014) · Rajeev Lalawat (252123022)
-A slide deck summarising the project is included as [`dbms_project_final.pptx`](dbms_project_final.pptx).
+
 
 ---
 
